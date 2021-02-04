@@ -11,9 +11,9 @@
 
       <h1 class="my-4">Shop Name</h1>
       <div class="list-group">
-        <a href="#" class="list-group-item">Category 1</a>
-        <a href="#" class="list-group-item">Category 2</a>
-        <a href="#" class="list-group-item">Category 3</a>
+        {% for category in categories %}
+        <a href="{% url 'core:product_list_by_category' category.name %}" class="list-group-item"> {{category.name}} </a>
+        {% endfor %}
       </div>
 
     </div>
@@ -30,13 +30,10 @@
             <a href="#"><img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}"></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#"> {{product.name}} </a>
+                <a href="{% url 'core:product_detail' product.id product.slug %}"> {{product.name}} </a>
               </h4>
               <h5>${{ product.price }}</h5>
               <p class="card-text">{{ product.description }}</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
             </div>
           </div>
         </div>
